@@ -21,14 +21,26 @@ kotlin {
         publishLibraryVariants("release")
     }
     jvm()
-    js(IR) {
+    js {
         browser()
+        nodejs()
+        binaries.library()
+    }
+    wasmJs {
+        browser()
+        binaries.library()
+    }
+    wasmWasi {
+        nodejs()
         binaries.library()
     }
     linuxX64()
     linuxArm64()
     macosX64()
     macosArm64()
+    iosArm64()
+    iosSimulatorArm64()
+    iosX64()
 
     sourceSets {
         commonMain.dependencies {
