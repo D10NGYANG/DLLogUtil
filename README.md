@@ -3,7 +3,7 @@
 轻量级 Kotlin Multiplatform 日志库，支持在多个平台上统一采集与打印日志，便于开发与调试。
 
 [![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin-Multiplatform-blueviolet?logo=kotlin&logoColor=white)](#)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](#) 
+[![Version](https://img.shields.io/badge/version-0.1.1-blue)](#) 
 
 ## 支持平台
 
@@ -42,7 +42,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.github.D10NGYANG:DLLogUtil:0.1.0")
+                implementation("com.github.D10NGYANG:DLLogUtil:0.1.1")
             }
         }
     }
