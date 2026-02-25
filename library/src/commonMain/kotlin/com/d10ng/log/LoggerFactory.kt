@@ -16,6 +16,9 @@ object LoggerFactory {
     // Logger列表
     private val loggers = mutableMapOf<String, Logger>()
 
+    // Logger列表变更事件
+    val loggersChangeEventFlow = MutableSharedFlow<Pair<String, Boolean>>(extraBufferCapacity = 32)
+
     /**
      * 发送日志数据
      * @param data 日志数据
@@ -30,9 +33,11 @@ object LoggerFactory {
      * @return Logger
      */
     fun create(tag: String): Logger {
-        return loggers.getOrPut(tag) {
-            Logger(tag)
-        }
+        if (loggers.containsKey(tag)) return loggers[tag]!!
+        val logger = Logger(tag)
+        loggers[tag] = logger
+        loggersChangeEventFlow.tryEmit(Pair(tag, true))
+        return logger
     }
 
     /**
@@ -50,6 +55,7 @@ object LoggerFactory {
      */
     fun remove(tag: String) {
         loggers.remove(tag)
+        loggersChangeEventFlow.tryEmit(Pair(tag, false))
     }
 
     /**
