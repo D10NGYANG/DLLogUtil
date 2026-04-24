@@ -10,9 +10,11 @@ plugins {
 }
 
 group = "com.github.D10NGYANG"
-version = "0.2.0"
+version = "0.2.1"
 
 kotlin {
+    withSourcesJar(publish = true)
+
     jvmToolchain(8)
     androidTarget {
         compilerOptions {

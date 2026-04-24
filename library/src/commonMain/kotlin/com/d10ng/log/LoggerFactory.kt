@@ -17,7 +17,7 @@ object LoggerFactory {
     private val loggers = mutableMapOf<String, Logger>()
 
     // Logger列表变更事件
-    val loggersChangeEventFlow = MutableSharedFlow<Pair<String, Boolean>>(extraBufferCapacity = 32)
+    val loggersChangeEventFlow = MutableSharedFlow<Pair<String, Boolean>>(replay = 1, extraBufferCapacity = 12)
 
     /**
      * 发送日志数据
